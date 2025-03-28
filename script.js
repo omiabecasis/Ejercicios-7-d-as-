@@ -16,19 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentWeekRoutine = {};
     let currentlySelectedDayId = 'day-1'; // Para saber qué día refrescar
 
-    // --- Rutina por Defecto (La última que definimos - Avanzada) ---
+    // --- Rutina por Defecto (Etapa 0/1 combinada) ---
     const defaultWeekRoutine = {
-        'day-1': { "type": "Rodilla HSR", "exercises": [{ "name": "Calentamiento", "instructions": "5 minutos de cardio ligero (bici, caminar).", "sets": "N/A", "reps": "5 min", "rest": "N/A", "tempo": "N/A"}, { "name": "Sentadilla con Talones Elevados (Peso Corporal)", "instructions": ["Coloca talones en disco/libro (2-5 cm).", "Tronco erguido.", "Baja en 3 seg.", "Pausa 1 seg abajo.", "Sube en 3 seg.", "Dolor tolerable (≤ 4-5/10)."], "sets": "3", "reps": "10", "rest": "2 minutos", "tempo": "3 / 1 / 3"}] },
-        'day-2': { "type": "Tobillo/Pantorrilla", "exercises": [{ "name": "Movilización Tobillo Rodilla a Pared", "instructions": ["Calentamiento dinámico.", "Talón siempre en el suelo."], "sets": "2", "reps": "15 por pierna", "rest": "Alternar", "tempo": "Controlado"}, { "name": "PNF CR Gemelo (Rodilla Recta)", "instructions": ["1. Estira suave 10s.", "2. CONTRAER isométrico (empuja punta pie vs suelo) 6-8s (50-70% esfuerzo).", "3. RELAJAR 2-3s.", "4. ESTIRAR suavemente a nuevo rango 15-20s."], "sets": "2-3 ciclos", "reps": "por pierna", "rest": "30 seg", "tempo": "Ver pasos"}, { "name": "PNF CR Sóleo (Rodilla Doblada)", "instructions": ["1. Estira suave 10s (rodilla doblada, talón abajo).", "2. CONTRAER isométrico (empuja punta pie vs suelo) 6-8s (50-70% esfuerzo).", "3. RELAJAR 2-3s.", "4. ESTIRAR flexionando más tobillo/rodilla suavemente a nuevo rango 15-20s."], "sets": "2-3 ciclos", "reps": "por pierna", "rest": "30 seg", "tempo": "Ver pasos"}, { "name": "Elev. Talón Unipodal Pesada (Rodilla Recta)", "instructions": ["De pie en una pierna, idealmente en escalón.", "Puedes añadir peso (mancuerna/mochila).", "Máximo rango posible.", "Controla el movimiento, sobre todo la bajada."], "sets": "3", "reps": "6-10 (RPE 8-9 / RIR 1-2)", "rest": "90-120 seg", "tempo": "2 / 1 / 3-4"}, { "name": "Elev. Talón Sentado Pesada", "instructions": ["En máquina o con peso sobre rodillas (~90° flexión).", "Máximo rango."], "sets": "3", "reps": "8-12 (difícil)", "rest": "90 seg", "tempo": "2 / 1 / 3"}, { "name": "Pogos (Saltos tobillo)", "instructions": ["Rodillas casi rectas.", "Salta vertical usando principalmente el tobillo.", "Minimiza tiempo de contacto.", "Empieza bajo, busca reactividad, no altura máxima aún.", "Detener si hay dolor agudo en rodilla o Aquiles."], "sets": "3", "reps": "15-20 saltos (o 15 seg)", "rest": "60-90 seg", "tempo": "Reactivo/Rápido"}] },
-        'day-3': { "type": "Rodilla HSR", "exercises": [{ "name": "Calentamiento", "instructions": "5 min cardio ligero.", "sets": "N/A", "reps": "5 min", "rest": "N/A", "tempo": "N/A"}, { "name": "Sentadilla con Talones Elevados (Peso Corporal)", "instructions": ["Como Día 1."], "sets": "3", "reps": "10", "rest": "2 minutos", "tempo": "3 / 1 / 3"}] },
-        'day-4': { "type": "Tobillo/Pantorrilla", "exercises": [{ "name": "Movilización Tobillo Rodilla a Pared", "instructions": ["Calentamiento."], "sets": "2", "reps": "15 por pierna", "rest": "Alternar", "tempo": "Controlado"}, { "name": "PNF CR Gemelo (Rodilla Recta)", "instructions": ["Contraer-Relajar-Estirar."], "sets": "2-3 ciclos", "reps": "por pierna", "rest": "30 seg", "tempo": "Ver pasos"}, { "name": "PNF CR Sóleo (Rodilla Doblada)", "instructions": ["Contraer-Relajar-Estirar."], "sets": "2-3 ciclos", "reps": "por pierna", "rest": "30 seg", "tempo": "Ver pasos"}, { "name": "Elev. Talón Unipodal Pesada (Rodilla Recta)", "instructions": ["Como Día 2."], "sets": "3", "reps": "6-10 (RPE 8-9)", "rest": "90-120 seg", "tempo": "2 / 1 / 3-4"}, { "name": "Elev. Talón Sentado Pesada", "instructions": ["Como Día 2."], "sets": "3", "reps": "8-12", "rest": "90 seg", "tempo": "2 / 1 / 3"}, { "name": "Pogos (Saltos tobillo)", "instructions": ["Como Día 2."], "sets": "3", "reps": "15-20 saltos", "rest": "60-90 seg", "tempo": "Reactivo"}] },
-        'day-5': { "type": "Rodilla HSR", "exercises": [{ "name": "Calentamiento", "instructions": "5 min cardio ligero.", "sets": "N/A", "reps": "5 min", "rest": "N/A", "tempo": "N/A"}, { "name": "Sentadilla con Talones Elevados (Peso Corporal)", "instructions": ["Como Día 1."], "sets": "3", "reps": "10", "rest": "2 minutos", "tempo": "3 / 1 / 3"}] },
-        'day-6': { "type": "Tobillo/Pantorrilla", "exercises": [{ "name": "Movilización Tobillo Rodilla a Pared", "instructions": ["Calentamiento."], "sets": "2", "reps": "15 por pierna", "rest": "Alternar", "tempo": "Controlado"}, { "name": "PNF CR Gemelo (Rodilla Recta)", "instructions": ["Contraer-Relajar-Estirar."], "sets": "2-3 ciclos", "reps": "por pierna", "rest": "30 seg", "tempo": "Ver pasos"}, { "name": "PNF CR Sóleo (Rodilla Doblada)", "instructions": ["Contraer-Relajar-Estirar."], "sets": "2-3 ciclos", "reps": "por pierna", "rest": "30 seg", "tempo": "Ver pasos"}, { "name": "Elev. Talón Unipodal Pesada (Rodilla Recta)", "instructions": ["Como Día 2."], "sets": "3", "reps": "6-10 (RPE 8-9)", "rest": "90-120 seg", "tempo": "2 / 1 / 3-4"}, { "name": "Elev. Talón Sentado Pesada", "instructions": ["Como Día 2."], "sets": "3", "reps": "8-12", "rest": "90 seg", "tempo": "2 / 1 / 3"}, { "name": "Pogos (Saltos tobillo)", "instructions": ["Como Día 2."], "sets": "3", "reps": "15-20 saltos", "rest": "60-90 seg", "tempo": "Reactivo"}] },
-        'day-7': { "type": "Descanso", "exercises": [{ "name": "Descanso Completo o Activo Ligero", "instructions": "Descanso total o caminata suave.", "sets": "N/A", "reps": "N/A", "rest": "N/A", "tempo": "N/A"}] }
+        "day-1": { "type": "Rodilla HSR", "exercises": [ { "name": "Calentamiento", "instructions": "5-10 minutos de cardio ligero (bicicleta estática, caminar suave).", "sets": "N/A", "reps": "5-10 min", "rest": "N/A", "tempo": "N/A" }, { "name": "Sentadilla con Talones Elevados (HSR)", "instructions": [ "Coloca talones sobre disco/libro (2-5 cm).", "Puedes empezar con peso corporal o añadir un peso ligero (ej. mancuerna al pecho) que te permita mantener la técnica y el tempo.", "Baja LENTAMENTE (3 seg).", "Pausa 1 seg abajo (controlando, sin dolor > 4-5/10).", "Sube LENTAMENTE (3 seg)." ], "sets": "4", "reps": "10-12", "rest": "2 minutos", "tempo": "3 / 1 / 3" }, { "name": "Wall Sit (Isométrico Opcional Post)", "instructions": [ "Si sientes molestias leves después de las sentadillas, puedes añadir esto.", "Apoya espalda en pared, rodillas 60-90°.", "Mantén sin moverte.", "Intensidad moderada (5-7/10 RPE)." ], "sets": "1-2", "reps": "Mantener 45 segundos", "rest": "2 minutos", "tempo": "Isométrico" } ] },
+        "day-2": { "type": "Isométrico + Movilidad Tobillo", "exercises": [ { "name": "Wall Sit (Isométrico Principal)", "instructions": [ "Apoya espalda en pared, rodillas 60-90° (ángulo cómodo).", "Mantén posición sin moverte.", "Intensidad moderada-alta (7/10 RPE)." ], "sets": "4", "reps": "Mantener 45 segundos", "rest": "2 minutos", "tempo": "Isométrico" }, { "name": "Movilidad Tobillo Rodilla a Pared", "instructions": ["Calentamiento/Movilidad.", "Talón siempre en suelo."], "sets": "2", "reps": "15 por pierna", "rest": "Alternar", "tempo": "Controlado" }, { "name": "PNF CR Gemelo (Rodilla Recta)", "instructions": ["1. Estira suave 10s.", "2. CONTRAER iso 6-8s.", "3. RELAJAR 2-3s.", "4. ESTIRAR nuevo rango 15-20s."], "sets": "2-3 ciclos", "reps": "por pierna", "rest": "30 seg", "tempo": "Ver pasos" }, { "name": "PNF CR Sóleo (Rodilla Doblada)", "instructions": ["1. Estira suave 10s.", "2. CONTRAER iso 6-8s.", "3. RELAJAR 2-3s.", "4. ESTIRAR nuevo rango 15-20s."], "sets": "2-3 ciclos", "reps": "por pierna", "rest": "30 seg", "tempo": "Ver pasos" } ] },
+        "day-3": { "type": "Rodilla HSR", "exercises": [ { "name": "Calentamiento", "instructions": "5-10 min cardio ligero.", "sets": "N/A", "reps": "5-10 min", "rest": "N/A", "tempo": "N/A"}, { "name": "Sentadilla con Talones Elevados (HSR)", "instructions": ["Como Día 1. Considera si puedes usar el mismo peso o necesitas ajustarlo según la respuesta del Día 2."], "sets": "4", "reps": "10-12", "rest": "2 minutos", "tempo": "3 / 1 / 3"}, { "name": "Wall Sit (Isométrico Opcional Post)", "instructions": ["Opcional post-HSR si ayuda."], "sets": "1-2", "reps": "Mantener 45 segundos", "rest": "2 minutos", "tempo": "Isométrico"} ] },
+        "day-4": { "type": "Isométrico + Movilidad Tobillo", "exercises": [ { "name": "Wall Sit (Isométrico Principal)", "instructions": ["Como Día 2."], "sets": "4", "reps": "Mantener 45 segundos", "rest": "2 minutos", "tempo": "Isométrico"}, { "name": "Movilidad Tobillo Rodilla a Pared", "instructions": ["Como Día 2."], "sets": "2", "reps": "15 por pierna", "rest": "Alternar", "tempo": "Controlado"}, { "name": "PNF CR Gemelo (Rodilla Recta)", "instructions": ["Como Día 2."], "sets": "2-3 ciclos", "reps": "por pierna", "rest": "30 seg", "tempo": "Ver pasos"}, { "name": "PNF CR Sóleo (Rodilla Doblada)", "instructions": ["Como Día 2."], "sets": "2-3 ciclos", "reps": "por pierna", "rest": "30 seg", "tempo": "Ver pasos"} ] },
+        "day-5": { "type": "Rodilla HSR", "exercises": [ { "name": "Calentamiento", "instructions": "5-10 min cardio ligero.", "sets": "N/A", "reps": "5-10 min", "rest": "N/A", "tempo": "N/A"}, { "name": "Sentadilla con Talones Elevados (HSR)", "instructions": ["Como Días 1 y 3. Evalúa si puedes aumentar ligeramente el peso si las repeticiones son fáciles y la recuperación ha sido buena."], "sets": "4", "reps": "10-12", "rest": "2 minutos", "tempo": "3 / 1 / 3"}, { "name": "Wall Sit (Isométrico Opcional Post)", "instructions": ["Opcional post-HSR si ayuda."], "sets": "1-2", "reps": "Mantener 45 segundos", "rest": "2 minutos", "tempo": "Isométrico"} ] },
+        "day-6": { "type": "Isométrico + Movilidad Tobillo", "exercises": [ { "name": "Wall Sit (Isométrico Principal)", "instructions": ["Como Días 2 y 4."], "sets": "4", "reps": "Mantener 45 segundos", "rest": "2 minutos", "tempo": "Isométrico"}, { "name": "Movilidad Tobillo Rodilla a Pared", "instructions": ["Como Días 2 y 4."], "sets": "2", "reps": "15 por pierna", "rest": "Alternar", "tempo": "Controlado"}, { "name": "PNF CR Gemelo (Rodilla Recta)", "instructions": ["Como Días 2 y 4."], "sets": "2-3 ciclos", "reps": "por pierna", "rest": "30 seg", "tempo": "Ver pasos"}, { "name": "PNF CR Sóleo (Rodilla Doblada)", "instructions": ["Como Días 2 y 4."], "sets": "2-3 ciclos", "reps": "por pierna", "rest": "30 seg", "tempo": "Ver pasos"} ] },
+        "day-7": { "type": "Descanso", "exercises": [ { "name": "Descanso Activo o Completo", "instructions": "Caminata ligera o descanso total. Permite que el cuerpo se recupere.", "sets": "N/A", "reps": "N/A", "rest": "N/A", "tempo": "N/A" } ] }
     };
 
-    // --- Función para Cargar Rutina desde LocalStorage (o usar default) ---
-    function loadRoutine() {
+     // --- Función para Cargar Rutina desde LocalStorage (o usar default) ---
+     function loadRoutine() {
         const storedData = localStorage.getItem(STORAGE_KEY);
         if (storedData) {
             try {
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(currentWeekRoutine));
         }
         updateDayButtonLabels();
-        displayExercises(currentlySelectedDayId);
+        displayExercises(currentlySelectedDayId); // Muestra el día que estaba seleccionado o el inicial
     }
 
      // --- Función para Actualizar Nombres de Botones ---
@@ -76,19 +76,22 @@ document.addEventListener('DOMContentLoaded', () => {
                  throw new Error("El formato JSON no parece una rutina válida (falta 'day-1' o no es un objeto).");
             }
 
-            localStorage.setItem(STORAGE_KEY, jsonInput); // Guarda la cadena original
-            currentWeekRoutine = newRoutineObject; // Actualiza la variable global
+            localStorage.setItem(STORAGE_KEY, jsonInput);
+            currentWeekRoutine = newRoutineObject;
 
             updateDayButtonLabels();
-            displayExercises(currentlySelectedDayId); // Refresca la vista actual
+            displayExercises(currentlySelectedDayId);
 
             showFeedback("¡Rutina guardada y actualizada!", false);
-            routineJsonInput.value = '';
-            updateSection.classList.add('hidden');
+            routineJsonInput.value = ''; // Limpiar solo si tiene éxito
+            updateSection.classList.add('hidden'); // Ocultar solo si tiene éxito
 
-        } catch (e) {
+        } catch (e) { // SI OCURRE UN ERROR...
             console.error("Error al guardar/parsear rutina:", e);
-            showFeedback(`Error: ${e.message}. Revisa el formato JSON.`, true);
+            // Muestra un mensaje claro y NO borra el input ni oculta la sección
+            showFeedback(`Error al procesar: ${e.message}. Por favor, revisa el código JSON pegado. No se guardó.`, true);
+            // NO HACEMOS: routineJsonInput.value = '';
+            // NO HACEMOS: updateSection.classList.add('hidden');
         }
     }
 
@@ -99,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             saveFeedback.textContent = '';
             saveFeedback.className = '';
-        }, 5000);
+        }, 7000); // Aumentado a 7 segundos para dar tiempo a leer el error
     }
 
     // --- Lógica para Mostrar Ejercicios (Usa currentWeekRoutine) ---
@@ -135,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const instructionsList = document.createElement('ul');
                 exercise.instructions.forEach(step => {
                     const li = document.createElement('li');
-                    li.innerHTML = step; // Usa innerHTML para permitir formato básico si es necesario
+                    li.innerHTML = step;
                     instructionsList.appendChild(li);
                 });
                 detailsDiv.appendChild(instructionsList);
@@ -189,8 +192,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     toggleUpdateBtn.addEventListener('click', () => {
         updateSection.classList.toggle('hidden');
+        // Limpiar feedback al mostrar/ocultar
         saveFeedback.textContent = '';
         saveFeedback.className = '';
+        // Opcional: poner foco en el textarea cuando se muestra
+        if (!updateSection.classList.contains('hidden')) {
+            routineJsonInput.focus();
+        }
     });
 
     saveRoutineBtn.addEventListener('click', saveRoutine);
@@ -198,10 +206,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Carga Inicial de la Rutina ---
     loadRoutine();
 
-    // Seleccionar Día 1 visualmente en la carga
+    // Seleccionar Día 1 visualmente en la carga inicial
      const initialButton = document.getElementById(currentlySelectedDayId);
      if (initialButton) {
         dayButtons.forEach(btn => btn.classList.remove('active-day'));
         initialButton.classList.add('active-day');
      }
+
 });
