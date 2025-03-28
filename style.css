@@ -51,10 +51,10 @@ h1 {
     border-bottom: 1px solid #eee;
     padding: 15px 0;
     margin-bottom: 15px;
-    display: flex; /* Use flexbox for layout */
-    justify-content: space-between; /* Space out content and button */
-    align-items: flex-start; /* Align items to the top */
-    transition: opacity 0.3s ease; /* Smooth transition for completion */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: opacity 0.3s ease;
 }
 
 .exercise-item:last-child {
@@ -63,8 +63,8 @@ h1 {
 }
 
 .exercise-details {
-    flex-grow: 1; /* Allow details to take up available space */
-    margin-right: 15px; /* Add space between details and button */
+    flex-grow: 1;
+    margin-right: 15px;
 }
 
 .exercise-item h3 {
@@ -84,6 +84,7 @@ h1 {
 .exercise-item ul {
     padding-left: 20px;
     margin-top: 5px;
+    margin-bottom: 10px; /* Add margin below lists for spacing */
 }
 
 .complete-btn {
@@ -94,8 +95,8 @@ h1 {
     border-radius: 5px;
     cursor: pointer;
     font-size: 0.9em;
-    white-space: nowrap; /* Prevent button text wrapping */
-    align-self: center; /* Center button vertically */
+    white-space: nowrap;
+    align-self: center;
     transition: background-color 0.3s ease, opacity 0.3s ease;
 }
 
@@ -104,16 +105,16 @@ h1 {
 }
 
 .exercise-item.completed {
-    opacity: 0.5; /* Make completed item semi-transparent */
+    opacity: 0.5;
 }
 
 .exercise-item.completed .exercise-details {
-     text-decoration: line-through; /* Strikethrough text */
+     text-decoration: line-through;
      color: #888;
 }
 
 .exercise-item.completed .complete-btn {
-    background-color: #bdc3c7; /* Grey out button */
+    background-color: #bdc3c7;
     cursor: default;
     opacity: 0.7;
 }
