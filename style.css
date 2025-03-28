@@ -1,3 +1,4 @@
+/* Estilos anteriores (body, h1, #day-selector, .day-btn, #exercise-display, .exercise-item, etc.) */
 body {
     font-family: sans-serif;
     line-height: 1.6;
@@ -37,16 +38,16 @@ h1, h2 {
 }
 
 #update-section textarea {
-    width: 98%;
-    max-width: 100%;
-    box-sizing: border-box;
+    width: 98%; /* Reduce slightly to prevent overflow */
+    max-width: 100%; /* Ensure it doesn't exceed container */
+    box-sizing: border-box; /* Include padding and border in width */
     margin-bottom: 10px;
-    font-family: monospace;
+    font-family: monospace; /* Ideal para ver código */
     font-size: 0.9em;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    resize: vertical;
+    resize: vertical; /* Allow vertical resize only */
 }
 
 
@@ -58,8 +59,8 @@ h1, h2 {
      border-radius: 5px;
      cursor: pointer;
      font-size: 1em;
-     display: block;
-     margin: 10px auto 0 auto;
+     display: block; /* Hacer que ocupe su propia línea */
+     margin: 10px auto 0 auto; /* Centrar botón */
 }
 #save-routine-btn:hover {
     background-color: #d35400;
@@ -69,7 +70,6 @@ h1, h2 {
     text-align: center;
     margin-top: 10px;
     font-weight: bold;
-    min-height: 1.2em; /* Ensure space for message */
 }
 .feedback-success {
     color: #27ae60;
@@ -78,6 +78,7 @@ h1, h2 {
     color: #c0392b;
 }
 
+/* Clase para ocultar elementos */
 .hidden {
     display: none;
 }
@@ -107,7 +108,7 @@ h1, h2 {
 }
 
 .day-btn.active-day {
-    background-color: #e67e22;
+    background-color: #e67e22; /* Naranja cuando está activo */
     font-weight: bold;
 }
 
