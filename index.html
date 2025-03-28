@@ -11,22 +11,20 @@
     <h1>Rutina Actualizable - Rodilla y Tobillo/Pantorrilla</h1>
     <p>Haz click en un día para ver los ejercicios. Monitoriza tu dolor (Rodilla/Tobillo ≤ 4-5/10 durante, Día Siguiente ¡NO PEOR!).</p>
 
-    <!-- Botón para mostrar/ocultar la actualización -->
     <div class="update-toggle">
         <button id="toggle-update-btn">Actualizar Rutina</button>
     </div>
 
-    <!-- Sección para actualizar la rutina (oculta por defecto) -->
     <div id="update-section" class="hidden">
         <h2>Actualizar Rutina Semanal</h2>
-        <p>Pega aquí la nueva rutina en formato JSON proporcionada por el asistente:</p>
+        <p>Pega aquí la nueva rutina en formato JSON proporcionada:</p>
         <textarea id="routine-json-input" rows="15" placeholder="Pega el código JSON de la rutina aquí..."></textarea>
         <button id="save-routine-btn">Guardar Nueva Rutina</button>
-        <p id="save-feedback"></p> <!-- Para mensajes de éxito/error -->
+        <p id="save-feedback"></p>
     </div>
 
     <div id="day-selector">
-        <button class="day-btn" id="day-1">Día 1</button> <!-- Nombres genéricos ahora -->
+        <button class="day-btn" id="day-1">Día 1</button>
         <button class="day-btn" id="day-2">Día 2</button>
         <button class="day-btn" id="day-3">Día 3</button>
         <button class="day-btn" id="day-4">Día 4</button>
